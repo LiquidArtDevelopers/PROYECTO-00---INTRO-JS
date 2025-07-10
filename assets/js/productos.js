@@ -31,7 +31,7 @@ doc.addEventListener('DOMContentLoaded',()=>{
             }
         }); 
     }
-    
+    // dasasdsads
     // recorrer en un for of todos los productos, en cada iteración trabajaré con cada producto
     for(const producto of productos){
         producto.addEventListener("change", function(){
