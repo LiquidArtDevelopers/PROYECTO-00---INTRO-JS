@@ -1,0 +1,321 @@
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "Ledger";
+  src: url("../fonts/Ledger-Regular.ttf");
+}
+@font-face {
+  font-family: "Staatliches";
+  src: url("../fonts/Staatliches-Regular.ttf");
+}
+h1, h2, h3 {
+  font-family: "Staatliches";
+}
+
+h4, p, a, label, td, th, span, input, label {
+  font-family: "Ledger";
+}
+
+h1 {
+  font-size: clamp(2rem, 4vw, 6rem);
+  text-align: center;
+  color: #bb4e4e;
+  letter-spacing: 10px;
+  width: 90%;
+}
+
+h2 {
+  color: rgba(224, 224, 224, 0.459);
+  font-size: 3rem;
+  letter-spacing: 4px;
+}
+
+h3 {
+  color: #bb4e4e;
+  font-size: 2rem;
+  letter-spacing: 2px;
+}
+
+h4 {
+  color: rgb(29, 29, 29);
+  font-size: 1rem;
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+
+p {
+  color: rgb(29, 29, 29);
+}
+
+a {
+  text-decoration: none;
+}
+
+.boton {
+  font-family: "Ledger";
+  padding: 0.7rem 4rem;
+  color: white;
+  background-color: #bb4e4e;
+  border-radius: 5px;
+  letter-spacing: 3px;
+  font-weight: 600;
+  border: 1px solid white;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.boton:hover {
+  background-color: white;
+  color: #bb4e4e;
+  border-color: #bb4e4e;
+}
+.boton:active {
+  transform: scale(0.95);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+header, nav, main, footer, section {
+  width: 100%;
+  max-width: 2560px;
+}
+
+section {
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 1rem;
+}
+@media only screen and (min-width: 800px) {
+  section {
+    padding: 4rem 0;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  section {
+    padding: 6rem 0;
+    row-gap: 2rem;
+  }
+}
+
+header {
+  min-height: 100dvh;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #bb4e4e;
+}
+@media only screen and (min-width: 800px) {
+  header {
+    min-height: 40dvh;
+    padding: 3rem;
+  }
+}
+header h1 {
+  color: white;
+}
+
+.products, .resume {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+@media only screen and (min-width: 800px) {
+  .products, .resume {
+    padding: 3rem;
+  }
+}
+
+.products {
+  width: 100%;
+  background-color: antiquewhite;
+  align-items: flex-start;
+  justify-content: center;
+}
+@media only screen and (min-width: 800px) {
+  .products {
+    width: 80%;
+  }
+}
+.products .items {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.5rem;
+  align-items: center;
+  justify-content: flex-start;
+}
+@media only screen and (min-width: 800px) {
+  .products .items {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .products .items {
+    column-gap: 4rem;
+  }
+}
+.products .items .item {
+  width: 100%;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  row-gap: 1rem;
+}
+.products .items .item h4 {
+  order: 1;
+  min-height: 45px;
+}
+.products .items .item > :nth-child(2) {
+  order: 0;
+}
+.products .items .item > :nth-child(2) img {
+  width: 100%;
+}
+.products .items .item p {
+  order: 2;
+}
+.products .items .item > :nth-child(4) {
+  order: 3;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  column-gap: 1rem;
+}
+.products .items .item > :nth-child(4) label {
+  font-size: 0.9rem;
+  color: #bb4e4e;
+}
+.products .items .item > :nth-child(4) input[type=checkbox] {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 2px;
+  accent-color: #bb4e4e;
+}
+.products .items .item > :nth-child(4) input[type=checkbox]:hover {
+  cursor: crosshair;
+}
+
+.resume {
+  position: relative;
+  width: 100%;
+  background-color: antiquewhite;
+  align-items: center;
+  justify-content: flex-start;
+}
+@media only screen and (min-width: 800px) {
+  .resume {
+    width: 60%;
+    border-radius: 1rem;
+  }
+}
+.resume #close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 30px;
+  height: 30px;
+  transition: 0.5s;
+}
+.resume #close:hover {
+  filter: invert(39%) sepia(8%) saturate(4182%) hue-rotate(312deg) brightness(97%) contrast(88%);
+  transform: rotate(-45deg);
+}
+.resume table {
+  width: 100%;
+  background-color: white;
+  border-radius: 0.5rem;
+}
+.resume table td, .resume table th {
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  text-align: center;
+}
+.resume table tbody tr > :nth-last-child(1) {
+  text-align: right;
+}
+.resume table tbody > :nth-child(odd) {
+  background-color: rgba(224, 224, 224, 0.87);
+}
+.resume #totalCompra span {
+  font-size: 1.5rem;
+  font-family: "Staatliches";
+  color: #bb4e4e;
+}
+
+#modal {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  min-height: 100dvh;
+  background-color: rgba(31, 31, 31, 0.842);
+  backdrop-filter: blur(10px);
+  display: none;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+#modal .resume {
+  max-height: 90dvh;
+  overflow-y: scroll;
+}
+#modal .resume::-webkit-scrollbar {
+  display: none;
+}
+#modal form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.2rem;
+}
+@media only screen and (min-width: 800px) {
+  #modal form {
+    width: 60%;
+  }
+}
+#modal form input, #modal form textarea {
+  padding: 0.5rem 2rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+}
+#modal form textarea {
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+  height: 100px;
+  min-height: 100px;
+  max-height: 200px;
+}
+#modal form .terminos {
+  display: flex;
+  flex-direction: row;
+  column-gap: 1rem;
+  padding: 2rem 0;
+}
+#modal form .terminos label {
+  font-family: 0.8rem;
+  width: 50%;
+}
+#modal form .terminos input[type=checkbox] {
+  width: 30px;
+  height: 30px;
+}/*# sourceMappingURL=productos.css.map */

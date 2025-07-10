@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Información reactiva y modal JS</title>
+
+    <!-- Cargo sólo su CSS -->
+    <link rel="stylesheet" href="./assets/css/productos.min.css">
+    <!-- Cargo sólo su JS -->
+    <script type="module" src="./assets/js/productos.js"></script>
+
+</head>
+<body>
+
+    <header>
+        <h1>Ejemplo de selección de pedido con JS</h1>
+    </header>
+
+    <main>
+       
+        <section>
+
+            <h2>Elige tu menú</h2>
+
+            <article class="products">
+                <h3>Nuestras hamburguesas</h3>
+                <div class="items">
+
+                    <div class="item">
+                        <h4>Hamburguesa con queso</h4>
+                        <div>
+                            <img src="https://dummyimage.com/600x600" alt="">
+                        </div>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, tenetur.</p>
+                        <div>
+                            <label for="item01">Añadir a la cesta</label>
+                            <!-- inpout producto 1 -->
+                            <input id="item01" type="checkbox" data-nombre="Hamburguesa con queso" data-precio="10,99€" data-id="producto01" class="producto">
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <h4>Producto 02</h4>
+                        <div>
+                            <img src="https://dummyimage.com/600x600" alt="">
+                        </div>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, tenetur.</p>
+                        <div >
+                            <label for="item02">Añadir a la cesta</label>
+                            <!-- inpout producto 2 -->
+                            <input id="item02" type="checkbox" data-nombre="Perrito caliente" data-precio="8,99€" data-id="producto02" class="producto">
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <h4>Producto 03</h4>
+                        <div>
+                            <img src="https://dummyimage.com/600x600" alt="">
+                        </div>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, tenetur.</p>
+                        <div>
+                            <label for="item03">Añadir a la cesta</label>
+                            <!-- inpout producto 3 -->
+                            <input id="item03" type="checkbox" data-nombre="Pepito con pimientos y queso" data-precio="14,99€" data-id="producto03" class="producto">
+                        </div>
+                    </div>
+
+                </div>
+            </article>
+
+            <article class="resume">
+                <h3>Tu pedido</h3>
+                <table id="tablaPedido">
+                    <thead>
+                        <tr>
+                            <th>Nº</th>
+                            <th>Producto</th>
+                            <th>precio/u</th>
+                            <th>Cantidad</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableItems">
+                        <!-- aquí meteré tr (filas) de forma dinámica a través de JS según el usuario clicka o no en los productos -->
+                    </tbody>
+                </table>
+                <div id="totalCompra">
+                    <span>TOTAL:</span>
+                    <span id="total" data-total="0"></span>
+                </div>
+                <div class="boton" id="botonPedido">Hacer pedido</div>
+            </article>
+
+            <div id="modal">
+                <article class="resume" id="contenedorModal">
+                    <img id="close" src="./assets/img/close-outline.svg" alt="">
+                    <h3>Confirma tu pedido</h3>
+                    <!-- aquí irá la tabla clonada de forma dinámica desde JS -->
+                    <!-- aquí irá el div clonado con el TOTAL -->
+
+                    <form action="./php/gestionForm.php" method="post">
+                        <label for="nom">Nombre</label>
+                        <input type="text" name="nom" id="nom">
+
+                        <label for="email">Correo Electrónico</label>
+                        <input type="email" name="email" id="email">
+
+                        <label for="tel">Teléfono</label>
+                        <input type="tel" name="tel" id="tel">
+
+                        <label for="dir">Dirección</label>
+                        <input type="text" name="dir" id="dir">
+                        
+                        <label for="coment">Comentarios</label>
+                        <textarea name="coment" id="coment"></textarea>
+
+                        <div class="terminos">
+                            <label for="terminos">Aceptar términos y condiciones de política de privacidad</label>
+                            <input type="checkbox" name="terminos" id="terminos">                            
+                        </div>
+                        <input type="submit" value="Finalizar y Pagar" class="boton" id="terminos">
+                        
+                    </form>
+
+                </article>
+            </div>
+
+        </section>
+
+    </main>    
+    
+    
+</body>
+</html>

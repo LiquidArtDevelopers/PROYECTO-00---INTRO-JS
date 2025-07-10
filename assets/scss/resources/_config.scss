@@ -1,0 +1,130 @@
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+
+@font-face {
+    font-family: 'Ledger' ;
+    src: url('../fonts/Ledger-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Staatliches' ;
+    src: url('../fonts/Staatliches-Regular.ttf');
+}
+
+
+// Variables del proyecto
+$fuenteTitulos:'Staatliches';
+$fuenteTextos:'Ledger';
+
+$color00:white;
+$color01: rgb(29, 29, 29);
+$color01bis: rgba(224, 224, 224, 0.87);
+$color01bis1:rgba(224, 224, 224, 0.459);
+$color01bis2:rgba(31, 31, 31, 0.842);
+$color02: #bb4e4e;
+$color03: rgb(122, 234, 198);
+
+$tablet: 800px;
+$desktop: 1200px;
+
+$padMin: 1.5rem;
+$padMax: 3rem;
+
+
+// Aquí estilos de los encabezados h1, h2, h3, etc y de los textos
+h1, h2, h3{
+    font-family: $fuenteTitulos;
+}
+h4, p, a, label, td, th, span, input, label{
+    font-family: $fuenteTextos;
+}
+
+h1{
+    font-size: clamp(2rem, 4vw, 6rem);
+    text-align: center;     
+    color: $color02;
+    letter-spacing: 10px;
+    width: 90%;    
+}
+h2{
+    color: $color01bis1;
+    font-size: 3rem;
+    letter-spacing: 4px;
+}
+h3{
+    color: $color02;
+    font-size: 2rem;
+    letter-spacing: 2px;
+}
+h4{    
+    color: $color01;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+p{    
+    color: $color01;
+}
+a{    
+    text-decoration: none;
+}
+
+// Estilos de ciertos recursos usados en toda las páginas
+.boton{
+    font-family: $fuenteTextos;
+    padding: 0.7rem 4rem;
+    color: $color00;  
+    background-color: $color02;
+    border-radius: 5px;
+    letter-spacing: 3px;
+    font-weight: 600;
+    border: 1px solid $color00;
+    transition: 0.3s;
+    cursor: pointer;
+    &:hover{
+        background-color: $color00;
+        color:$color02;
+        border-color: $color02;
+    }
+    &:active{
+        transform: scale(0.95);
+    }
+}
+
+
+// Estilos básicos de etiquetas principales
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+header, nav, main, footer, section{
+    width: 100%;
+    max-width: 2560px;
+}
+
+section{
+    padding: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 1rem;
+    @media only screen and (min-width:$tablet){
+        &{
+            padding: 4rem 0;
+        }
+    }
+    @media only screen and (min-width:$desktop){
+        &{
+            padding: 6rem 0;
+            row-gap: 2rem;
+        }
+    }
+}

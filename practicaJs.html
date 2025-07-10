@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .boton {
+            width: fit-content;
+            padding: 0.5rem 2rem;
+            background-color: rgb(196, 80, 80);
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 1.2rem;
+            transition: 0.3s;
+            border: 2px solid white;
+            cursor: pointer;
+
+            &:hover {
+                background-color: white;
+                color: rgb(196, 80, 80);
+                border: 2px solid rgb(196, 80, 80);
+                ;
+            }
+
+            &:active {
+                transform: scale(0.9);
+            }
+        }
+
+        .destacar {
+            width: fit-content;
+            border-bottom: 3px dotted black;
+        }
+        .separador{
+            width: 100%;
+            height: 50dvh;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h1 id="mih1">Hola Mundo</h1>
+    <p id="presentacion">Texto inicial</p>
+
+    <ul>
+        <li id="nombre"></li>
+        <li id="apellido"></li>
+        <li id="nombreCompleto"></li>
+    </ul>
+
+    <div class="boton" id="boton01">Cambiar texto del h1</div>
+    <div class="boton" id="boton02">Volver al texto inicial del h1</div>
+    <div class="boton" id="boton03">Cambiar color al h1</div>
+    <div class="boton" id="boton04">añadir o quitar una clase</div>
+
+
+    <!-- Ejercicio de cambio en checkbox -->
+
+    <label for="item01">Producto 1</label>
+    <input type="checkbox" name="" id="item01" data-nombre="Hamburguesa con bacon">
+
+    <label for="item02">Producto 2</label>
+    <input type="checkbox" name="" id="item02" data-nombre="Pepito de carne con queso">
+
+    <table>
+        <tr>            
+            <th>Producto</th>
+        </tr>
+        <tr>
+            <td id="registro01"></td>
+        </tr>
+        <tr>
+            <td id="registro02"></td>
+        </tr>
+    </table>
+
+
+    <!-- Ejercicio de cambio de checkbox con class e iterador -->
+    <label for="prod01">Producto 1</label>
+    <input type="checkbox" name="" id="prod01" data-nombre="Hamburguesa con bacon" class="item">
+
+    <label for="prod02">Producto 2</label>
+    <input type="checkbox" name="" id="prod02" data-nombre="Pepito de carne con queso" class="item">
+
+    <table>
+        <tr>            
+            <th>Producto</th>
+        </tr>        
+    </table>
+
+
+
+    <!-- Ejercicio de cambio de checkbox con class e iterador y manejo de child desde js-->
+    <label for="i01">Hamburguesa con bacon</label>
+    <input type="checkbox" name="" id="i01" data-nombre="Hamburguesa con bacon" class="producto" data-id="p01">
+
+    <label for="i02">Pepito de carne con queso</label>
+    <input type="checkbox" name="" id="i02" data-nombre="Pepito de carne con queso" class="producto" data-id="p02">
+
+    <label for="i03">Pizza</label>
+    <input type="checkbox" name="" id="i03" data-nombre="Pizza" class="producto" data-id="p03">
+
+    <label for="i04">Perrito caliente</label>
+    <input type="checkbox" name="" id="i04" data-nombre="Perrito caliente" class="producto" data-id="p04">
+
+    <table id="tablaResumen">
+        <tr>            
+            <th>Producto</th>
+        </tr>
+         
+    </table>
+
+
+
+    
+    <div class="separador"></div>
+
+
+
+    <script>
+        // Aquí ya programo en javascript, y es necesario que el resto del html ya esté cargado, por eso pongo este sscript al final del body.
+
+        // **01** Cambiar el texto del h1 y cambiar una p ****
+        // Uso de constantes y almacenamiento de colecciones HTML
+        // Modificación de html y textos a través de JS.
+        const mih1 = document.getElementById('mih1')
+        const presentacion = document.getElementById('presentacion')
+
+        // console.log(mih1) //muestro en consola el valor de la constante mih1
+        // mih1.innerHTML="<span>Este texto lo meto como HTML con una etiqueta span adicional</span>" //puedo meter etiquetas html
+        presentacion.innerText = "Hola qué tal, este texto lo meto con innerText" //puedo meter texto
+
+
+        // **02** Concatenar con variables ****
+        // Uso de constantes y variables "let"
+        // Concatenar string con variables de dos formas: antigua y usando "template string"
+        const nombre = document.getElementById("nombre")
+        const apellido = document.getElementById("apellido")
+        const nombreCompleto = document.getElementById("nombreCompleto")
+
+        let nom = "Igor"
+        let ape = "Aranaz"
+
+        nombre.innerText = nom
+        apellido.innerText = ape
+
+        nombreCompleto.innerText = nom + " " + ape //Concatenar normal con +
+        nombreCompleto.innerHTML = `ofidaflijasdik ${nom} dasda ${ape} dasdasd.` //concatenar con template
+
+
+
+        // **03** Uso de eventos de escucha desde JS
+
+        // Recojo en constante el elemento botón
+        const boton01 = document.getElementById("boton01")
+        // Ese elemento botón estoy a la espera de cuando hagan click
+        // i hacen click, ejecuto la función del listener, que cambia el h1
+        boton01.addEventListener("click", function () {
+            // este código sólo se ejecuta cuando hacen click en el elementop boton01
+            mih1.innerText = "He cambiado el H1 a través del botón"
+        })
+
+        const boton02 = document.getElementById("boton02")
+        const valorInicialdelh1 = mih1.innerText
+
+        boton02.addEventListener("click", function () {
+            mih1.innerText = valorInicialdelh1
+        })
+
+
+        const boton03 = document.getElementById("boton03")
+        boton03.addEventListener("click", function () {
+            mih1.style.color = "red"
+        })
+
+
+        const boton04 = document.querySelector("#boton04")
+        boton04.addEventListener("click", function () {
+            mih1.classList.toggle("destacar")
+        })
+
+
+        // Ejercicio de cambio en checkbox
+
+        
+        const item01 = document.getElementById("item01")
+        const item02 = document.getElementById("item02")
+        const registro01 = document.getElementById("registro01")
+        const registro02 = document.getElementById("registro02")
+
+        item01.addEventListener("change", function(){
+            if(item01.checked){
+                registro01.innerText=item01.getAttribute("data-nombre")
+            }else{
+                registro01.innerText=""
+            }
+        })
+
+        item02.addEventListener("change", function(){
+            if(item02.checked){
+                registro02.innerText=item02.getAttribute("data-nombre")
+            }else{
+                registro02.innerText=""
+            }
+        })
+
+       
+        // Ejercicio de cambio de checkbox con class e iterador
+        const items = document.getElementsByClassName("item")
+
+        for(const item of items){
+            item.addEventListener("change", function(){
+                console.log(item)
+            })
+        }
+
+
+
+
+        // Ejercicio de cambio de checkbox con class e iterador y manejo de child desde js
+
+        // Recojo en constantes 
+        const productos = document.getElementsByClassName("producto")
+        const tablaResumen = document.getElementById("tablaResumen")       
+
+        for(const producto of productos){
+
+            producto.addEventListener("change", function(){
+
+                const id = producto.getAttribute("data-id");
+
+                if(producto.checked){
+                    const tr = document.createElement("tr")
+                    tr.setAttribute("id", producto.getAttribute("data-id")) 
+
+                    const td = document.createElement("td")
+                    td.innerText = producto.getAttribute("data-nombre")
+
+                    tr.appendChild(td)
+                    tablaResumen.appendChild(tr)
+                                                       
+                }else{
+                    document.getElementById(id)?.remove();
+                }
+            })
+        }
+
+
+
+
+
+    </script>
+
+
+</body>
+
+</html>
