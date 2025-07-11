@@ -87,15 +87,15 @@ header{
                 font-size: 0.9rem;
                 color: c.$color02;
                 }
-                // input[type='checkbox']{
-                //     width: 2rem;
-                //     height: 2rem;
-                //     border-radius: 2px;
-                //     accent-color: c.$color02;
-                //     &:hover{
-                //         cursor: crosshair;
-                //     }
-                // }
+                input[type='checkbox']{
+                    width: 2rem;
+                    height: 2rem;
+                    border-radius: 2px;
+                    accent-color: c.$color02;
+                    &:hover{
+                        cursor: crosshair;
+                    }
+                }
                 input[type="number"]{
                     padding: 0 0.5rem;
                     width: 78px;

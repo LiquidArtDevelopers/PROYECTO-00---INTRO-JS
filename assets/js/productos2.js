@@ -100,6 +100,11 @@ doc.addEventListener('DOMContentLoaded',()=>{
                     tr.appendChild(td4)
                     tr.appendChild(td5)
                     tableItems.appendChild(tr)
+
+                    // Gestión del total de la compra (sumar)
+                    totalCompraNuevo = totalCompra + totalLinea
+                    total.setAttribute("data-total", totalCompraNuevo)
+                    total.innerText=totalCompraNuevo+" €"
                 }else{
                     // Si la fila existe en la tabla, cambio sus datos. Usaré el id para llegar al nodo hijo que necesite.
 
@@ -108,16 +113,24 @@ doc.addEventListener('DOMContentLoaded',()=>{
                     const fila = document.getElementById(id)
                     const td4 = fila.children[3]
                     const td5 = fila.children[4]
-                    td4.innerText=cantidad
-                    td5.innerText=totalLinea+" €"
+
+                    // Compruebo que no sea el mismo valor cantidad
+                    if(cantidad !== parseInt(td4.innerText)){
+                        td4.innerText=cantidad
+                        td5.innerText=totalLinea+" €"
+
+                        // Gestión del total de la compra (sumar)
+                        totalCompraNuevo = totalCompra + totalLinea
+                        total.setAttribute("data-total", totalCompraNuevo)
+                        total.innerText=totalCompraNuevo+" €"
+                    }
+
+                    
                     
                 
                 }
 
-                // Gestión del total de la compra (sumar), como es común tanto a si existe o no el producto en la tabla, lo añado fuera del if/else
-                totalCompraNuevo = totalCompra + totalLinea
-                total.setAttribute("data-total", totalCompraNuevo)
-                total.innerText=totalCompraNuevo+" €"
+                
 
             }else{ //Sino, significa que "cantidad" no es igual o mayor que 1, por lo que es = 0. En ese caso, si existe la fila la borro, y si no existe, no hago nada
                 if(comprobarSiExisteFila(id)==true){
