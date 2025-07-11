@@ -204,14 +204,13 @@ header h1 {
   font-size: 0.9rem;
   color: #bb4e4e;
 }
-.products .items .item > :nth-child(4) input[type=checkbox] {
-  width: 2rem;
-  height: 2rem;
-  border-radius: 2px;
-  accent-color: #bb4e4e;
-}
-.products .items .item > :nth-child(4) input[type=checkbox]:hover {
-  cursor: crosshair;
+.products .items .item > :nth-child(4) input[type=number] {
+  padding: 0 0.5rem;
+  width: 78px;
+  color: #821010;
+  border: none;
+  border-radius: 5px;
+  font-size: 2rem;
 }
 
 .resume {

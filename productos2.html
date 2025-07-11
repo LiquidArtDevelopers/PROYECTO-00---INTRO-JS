@@ -36,9 +36,16 @@
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, tenetur.</p>
                         <div>
                             <label for="item01">Añadir a la cesta</label>
-                            <!-- inpout producto 1 -->
-                            <input id="item01" type="checkbox" data-nombre="Hamburguesa con queso" data-precio="10,99€" data-id="producto01" class="producto">
-                            
+                            <!-- input producto 1 -->
+                            <!-- <input id="item01" type="checkbox" data-nombre="Hamburguesa con queso" data-precio="10,99€" data-id="producto01" class="producto"> -->
+                            <input type="number" name="item01" id="item01" min="0" max="10"
+                            data-nombre="Hamburguesa con queso"
+                            data-precio="10,99€"
+                            data-id="producto01"                            
+                            value="0">
+                            <div class="boton producto" data-input-id="item01">Añadir</div>
+                            <!-- he cambiado el input tipo checkbox por uno tipo number
+                             ahora, lo que desata el evento no es el "change" del checkbox, sino el "click" en el botón, por lo que cambiará la lógica dentro del evento. Además, ahora tenemos que recoger desde el evento del click en el botón los datas de un elemento hermano (input type number), para poder asignar sus valores data y, además su valor en texto (cantidad seleccionada) -->
                         </div>
                     </div>
 
@@ -51,7 +58,13 @@
                         <div >
                             <label for="item02">Añadir a la cesta</label>
                             <!-- inpout producto 2 -->
-                            <input id="item02" type="checkbox" data-nombre="Perrito caliente" data-precio="8,99€" data-id="producto02" class="producto">
+                            <!-- <input id="item02" type="checkbox" data-nombre="Perrito caliente" data-precio="8,99€" data-id="producto02" class="producto"> -->
+                            <input type="number" name="item02" id="item02" min="0" max="10"
+                            data-nombre="Perrito caliente"
+                            data-precio="8,99€"
+                            data-id="producto02"
+                            value="0">
+                            <div class="boton producto" data-input-id="item02">Añadir</div>
                         </div>
                     </div>
 
@@ -64,7 +77,13 @@
                         <div>
                             <label for="item03">Añadir a la cesta</label>
                             <!-- inpout producto 3 -->
-                            <input id="item03" type="checkbox" data-nombre="Pepito con pimientos y queso" data-precio="14,99€" data-id="producto03" class="producto">
+                            <!-- <input id="item03" type="checkbox" data-nombre="Pepito con pimientos y queso" data-precio="14,99€" data-id="producto03" class="producto"> -->
+                            <input type="number" name="item03" id="item03" min="0" max="10"
+                            data-nombre="Pepito con pimientos y queso"
+                            data-precio="14,99€"
+                            data-id="producto03"
+                            value="0">
+                            <div class="boton producto" data-input-id="item03">Añadir</div>
                         </div>
                     </div>
 

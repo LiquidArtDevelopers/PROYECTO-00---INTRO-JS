@@ -22,8 +22,7 @@ doc.addEventListener('DOMContentLoaded',()=>{
 
             const tds = fila.querySelectorAll('td')
             let primerTd = tds[0]
-
-            console.log(primerTd)
+            
             if(primerTd){
                 contador = contador + 1
                 console.log(contador)
@@ -31,19 +30,35 @@ doc.addEventListener('DOMContentLoaded',()=>{
             }
         }); 
     }
+
+    function comprobarSiExisteFila(valorRecibido){
+        // Esta función recibe un valor con el que captaremos un elemento HTML a través de su ID
+        // Si ese elemento existe, la función devuelve un boolean = true, sino, devuelve false
+        const fila = document.getElementById(valorRecibido)
+        if(fila){
+            return true
+        }else{
+            return false
+        }
+    }
     
     
     // recorrer en un for of todos los productos, en cada iteración trabajaré con cada producto
     for(const producto of productos){
-        producto.addEventListener("change", function(){
+        producto.addEventListener("click", function(){
             // console.log(producto)
 
-            // recojo en constantes los datas de ese input que ha sufrido evento change (nombre, id y precio)
-            const id = producto.getAttribute("data-id")
-            const nombre = producto.getAttribute("data-nombre")
+            // recojo en una constante el elemento input tipo number que tiene toda la información a través del data-input-id del boton
+            const dataInputId = producto.getAttribute("data-input-id") //Recojo el data-input-id del botón en el que se ha hecho click
+            const input = document.getElementById(dataInputId) // sabiendo el id que tiene el input, lo meto en const
+            
 
-            let precio = producto.getAttribute("data-precio") //le pongo let ya que luego opero con dicha variable   "10,99"         
-            let cantidad = "2" // Vendría dinámico desde input de html
+            // recojo en constantes los datas de ese input (nombre, id y precio) Y CANTIDAD (VALUE)
+            const id = input.getAttribute("data-id")
+            const nombre = input.getAttribute("data-nombre")
+
+            let precio = input.getAttribute("data-precio") //le pongo let ya que luego opero con dicha variable   "10,99"    
+            let cantidad = input.value // Ahora viene como valor dinámico
             let totalLinea = 0 //La usaremos para multiplicar cantidad por precio unitario            
             let totalCompraNuevo = 0 //Aquí calcularemos el nuevo total de la compra
 
@@ -56,54 +71,66 @@ doc.addEventListener('DOMContentLoaded',()=>{
             totalLinea = precio * cantidad
             
 
-            // condición para actuar en función de si el input en cuestión está o no checked
-            if(producto.checked){
-                // Si ese input está checked añado a la tabla un nuevo TR (fila) con los TD y los datos de ese producto
-                // console.log(`El input ${id} lo han checkeado`)
+            // Si "cantidad" es mayor o igual a 1, entonces añadimos línea o modificamos sus datos si esta ya existe
+            if(cantidad >= 1){
+                
+                // Condición para saber si existe ya la línea y debo modificar los datos, o sino existe la añado.
+                // Llamo a una función a la que envío como parámetro el valor del id que tendrá la fila en caso de existir.
+                if(comprobarSiExisteFila(id) == false){
+                    // Si la fila no existe para este producto, añado una nueva fila
+                    const tr = document.createElement("tr")
+                    const td1 = document.createElement("td")
+                    const td2 = document.createElement("td")
+                    const td3 = document.createElement("td")
+                    const td4 = document.createElement("td")
+                    const td5 = document.createElement("td")
 
-                // crear elementos HTML desde JS, para luego metermes atributos y valores y después inyectarlos en el HTML
-                const tr = document.createElement("tr")
-                const td1 = document.createElement("td")
-                const td2 = document.createElement("td")
-                const td3 = document.createElement("td")
-                const td4 = document.createElement("td")
-                const td5 = document.createElement("td")
+                    // asigno valores
+                    tr.setAttribute("id", id)
+                    tr.setAttribute("class", "fila")
+                    td1.innerText="#"
+                    td2.innerText=nombre
+                    td3.innerText=precio +" €"
+                    td4.innerText=cantidad
+                    td5.innerText=totalLinea+" €"
+                    // anidamiento appendChild
+                    tr.appendChild(td1)
+                    tr.appendChild(td2)
+                    tr.appendChild(td3)
+                    tr.appendChild(td4)
+                    tr.appendChild(td5)
+                    tableItems.appendChild(tr)
+                }else{
+                    // Si la fila existe en la tabla, cambio sus datos. Usaré el id para llegar al nodo hijo que necesite.
 
-                // asigno valores
-                tr.setAttribute("id", id)
-                tr.setAttribute("class", "fila")
-                td1.innerText="#"
-                td2.innerText=nombre
-                td3.innerText=precio +" €"
-                td4.innerText=cantidad
-                td5.innerText=totalLinea+" €"
-                // anidamiento appendChild
-                tr.appendChild(td1)
-                tr.appendChild(td2)
-                tr.appendChild(td3)
-                tr.appendChild(td4)
-                tr.appendChild(td5)
-                tableItems.appendChild(tr)
+                    // Recojo en variables td que debo modificar.
+                    // Cojo del elemento a través de su id
+                    const fila = document.getElementById(id)
+                    const td4 = fila.children[3]
+                    const td5 = fila.children[4]
+                    td4.innerText=cantidad
+                    td5.innerText=totalLinea+" €"
+                    
+                
+                }
 
-
-                // Gestión del total de la compra (sumar)
+                // Gestión del total de la compra (sumar), como es común tanto a si existe o no el producto en la tabla, lo añado fuera del if/else
                 totalCompraNuevo = totalCompra + totalLinea
                 total.setAttribute("data-total", totalCompraNuevo)
                 total.innerText=totalCompraNuevo+" €"
 
-            }else{
-                // Si ese input NO está checked, busco el TR que tenga el mismo ID de este data-id del input, y lo quito
-                // console.log(`El input ${id} lo han descheckeado`)
-                document.getElementById(id).remove()
+            }else{ //Sino, significa que "cantidad" no es igual o mayor que 1, por lo que es = 0. En ese caso, si existe la fila la borro, y si no existe, no hago nada
+                if(comprobarSiExisteFila(id)==true){
+                    const fila = document.getElementById(id)
+                    fila.remove()
+                    // Gestión del total de la compra (restar)
+                    totalCompraNuevo = totalCompra - totalLinea
+                    total.setAttribute("data-total", totalCompraNuevo)
+                    total.innerText=totalCompraNuevo+" €"
+                }
+            }                
 
-
-                // Gestión del total de la compra (restar)
-                totalCompraNuevo = totalCompra - totalLinea
-                total.setAttribute("data-total", totalCompraNuevo)
-                total.innerText=totalCompraNuevo+" €"
-            
-            }
-
+            // Después de haber añadido o quitado fila en la acción de "añadirº"
             contarFilas()
 
         })
