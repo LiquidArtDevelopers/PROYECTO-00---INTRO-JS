@@ -21,11 +21,10 @@ doc.addEventListener('DOMContentLoaded',()=>{
         filas.forEach(fila => {
 
             const tds = fila.querySelectorAll('td')
-            let primerTd = tds[0]
-            
+            let primerTd = tds[0]            
             if(primerTd){
                 contador = contador + 1
-                console.log(contador)
+                // console.log(contador)
                 primerTd.innerText=contador
             }
         }); 
@@ -68,8 +67,8 @@ doc.addEventListener('DOMContentLoaded',()=>{
             // Gestión del total por línea            
             precio = parseFloat(precio)
             cantidad = parseInt(cantidad)
-            totalLinea = precio * cantidad
-            
+            totalLinea = precio * cantidad            
+            console.log(totalLinea)
 
             // Si "cantidad" es mayor o igual a 1, entonces añadimos línea o modificamos sus datos si esta ya existe
             if(cantidad >= 1){
@@ -112,31 +111,30 @@ doc.addEventListener('DOMContentLoaded',()=>{
                     // Cojo del elemento a través de su id
                     const fila = document.getElementById(id)
                     const td4 = fila.children[3]
-                    const td5 = fila.children[4]
+                    const td5 = fila.children[4]                    
 
-                    // Compruebo que no sea el mismo valor cantidad
+                    // Compruebo que no sea el mismo valor cantidad de la cantidad que ya está en la tabla
                     if(cantidad !== parseInt(td4.innerText)){
+
+                        let totalLineaAnterior = parseFloat(td5.innerText)
+                        // piso los text de la tabla
                         td4.innerText=cantidad
                         td5.innerText=totalLinea+" €"
 
+
                         // Gestión del total de la compra (sumar)
-                        totalCompraNuevo = totalCompra + totalLinea
+                        totalCompraNuevo = totalCompra + (totalLinea - totalLineaAnterior)
                         total.setAttribute("data-total", totalCompraNuevo)
                         total.innerText=totalCompraNuevo+" €"
-                    }
-
-                    
-                    
-                
+                    }             
                 }
-
-                
 
             }else{ //Sino, significa que "cantidad" no es igual o mayor que 1, por lo que es = 0. En ese caso, si existe la fila la borro, y si no existe, no hago nada
                 if(comprobarSiExisteFila(id)==true){
                     const fila = document.getElementById(id)
+                    const td5 = fila.children[4]
                     fila.remove()
-                    // Gestión del total de la compra (restar)
+                    totalLinea = parseFloat(td5.innerText)
                     totalCompraNuevo = totalCompra - totalLinea
                     total.setAttribute("data-total", totalCompraNuevo)
                     total.innerText=totalCompraNuevo+" €"
