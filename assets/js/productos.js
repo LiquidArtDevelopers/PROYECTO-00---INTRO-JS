@@ -3,7 +3,7 @@ doc.addEventListener('DOMContentLoaded',()=>{
 
 
     // ******************************
-    // GESTIÓN DE AÑADIR O QUITAR PRODUCTOS Y SUMATORIOS DE PRECIOS EN LA TABLA
+    // GESTIÓN DE AÑADIR O QUITAR PRODUCTOS A LA TABLA, TOTALIZAR Y NUMERAR FILAS
 
     // recoger el html en constantes
     // recoger todos los input a través de la clase productos
@@ -14,24 +14,37 @@ doc.addEventListener('DOMContentLoaded',()=>{
      // Función para rellenar el contador de filas de la tabla
     function contarFilas(){
         // Recojo todas las filas sólo cuando llamo a esta función
-        const filas = document.querySelectorAll(".fila")
+        const filas = document.getElementsByClassName("fila")
         let contador = 0
 
-        //Hago una iteración mediante foreach
-        filas.forEach(fila => {
+        // //Hago una iteración mediante foreach
+        // filas.forEach(fila => {
 
+        //     const tds = fila.querySelectorAll('td')
+        //     let primerTd = tds[0]
+
+        //     console.log(primerTd)
+        //     if(primerTd){
+        //         contador = contador + 1
+        //         console.log(contador)
+        //         primerTd.innerText=contador
+        //     }
+        // });
+        
+        for(const fila of filas){
+            // RECOJO TODOS LOS TD QUE TIENE ESA FILA EN UNA CONSTANTE
             const tds = fila.querySelectorAll('td')
             let primerTd = tds[0]
 
             console.log(primerTd)
-            if(primerTd){
+            if(primerTd==true){
                 contador = contador + 1
                 console.log(contador)
                 primerTd.innerText=contador
-            }
-        }); 
+            } 
+        }
     }
-    // dasasdsads
+    
     // recorrer en un for of todos los productos, en cada iteración trabajaré con cada producto
     for(const producto of productos){
         producto.addEventListener("change", function(){
@@ -108,7 +121,6 @@ doc.addEventListener('DOMContentLoaded',()=>{
         })
     }
        
-
 
 
     // ******************************
